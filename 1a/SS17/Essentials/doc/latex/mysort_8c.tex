@@ -1,0 +1,136 @@
+\hypertarget{mysort_8c}{}\section{mysort.\+c File Reference}
+\label{mysort_8c}\index{mysort.\+c@{mysort.\+c}}
+
+
+This Program reads input from stdin or a file, sorts them via qsort in ascending or descendig order and prints the result on stdout.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$strings.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$getopt.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnode}{node}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mysort_8c_ae9a21d6d42a362acf7978de7ad532d0b}\label{mysort_8c_ae9a21d6d42a362acf7978de7ad532d0b}} 
+typedef struct \hyperlink{structnode}{node} {\bfseries node\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{mysort_8c_ad96d407a911fbb914fa8e4cfbf2faf0f}{usage} (void)
+\begin{DoxyCompactList}\small\item\em This function writes helpful usage information about the program to stderr. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{mysort_8c_a790299d6a0f2d720f0f197331ad4b442}\label{mysort_8c_a790299d6a0f2d720f0f197331ad4b442}} 
+static int {\bfseries push} (\hyperlink{structnode}{node\+\_\+t} $\ast$$\ast$head, char $\ast$val)
+\item 
+\mbox{\Hypertarget{mysort_8c_af0833d86ec2e1287dd2062f6ebe49cf5}\label{mysort_8c_af0833d86ec2e1287dd2062f6ebe49cf5}} 
+static void {\bfseries free\+\_\+list} (\hyperlink{structnode}{node\+\_\+t} $\ast$head)
+\item 
+\mbox{\Hypertarget{mysort_8c_a4dea72c91be73307f519b5e1f722e011}\label{mysort_8c_a4dea72c91be73307f519b5e1f722e011}} 
+static void {\bfseries free\+\_\+all} (\hyperlink{structnode}{node\+\_\+t} $\ast$head, char $\ast$buf)
+\item 
+static bool \hyperlink{mysort_8c_a3111957ab5baf740629c6c7ed408d7ad}{getarguments} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em reads in the arguments \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{mysort_8c_a320117814d6c6ab32c531c9e5bbc65a2}\label{mysort_8c_a320117814d6c6ab32c531c9e5bbc65a2}} 
+static \hyperlink{structnode}{node\+\_\+t} $\ast$ {\bfseries read\+From\+File\+And\+Save} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]}, char $\ast$buf, int $\ast$file\+As\+Argument)
+\item 
+\mbox{\Hypertarget{mysort_8c_a512fcde660b310d214dd4dacdda0f426}\label{mysort_8c_a512fcde660b310d214dd4dacdda0f426}} 
+static \hyperlink{structnode}{node\+\_\+t} $\ast$ {\bfseries read\+From\+Stdin\+And\+Save} (\hyperlink{structnode}{node\+\_\+t} $\ast$head, char $\ast$buf, int $\ast$list\+\_\+length)
+\item 
+\mbox{\Hypertarget{mysort_8c_aad1b6b261906050dda3ffb1bf7e300d0}\label{mysort_8c_aad1b6b261906050dda3ffb1bf7e300d0}} 
+static int {\bfseries comp} (const void $\ast$elem1, const void $\ast$elem2)
+\item 
+\mbox{\Hypertarget{mysort_8c_a5df83c67ac673fdab5e963f1eefbadaa}\label{mysort_8c_a5df83c67ac673fdab5e963f1eefbadaa}} 
+static int {\bfseries comp\+Rev} (const void $\ast$elem1, const void $\ast$elem2)
+\item 
+\mbox{\Hypertarget{mysort_8c_a7cb995880a352a79e5767ee0716d49be}\label{mysort_8c_a7cb995880a352a79e5767ee0716d49be}} 
+static void {\bfseries sort\+And\+Print} (\hyperlink{structnode}{node\+\_\+t} $\ast$head, int list\+\_\+length, bool reverse)
+\item 
+int \hyperlink{mysort_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em saves program name, allocates a buffer, calls the functions getarguments, read\+From\+File\+And\+Save, sort\+And\+Print, free\+\_\+all and handles the return values \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static char $\ast$ \hyperlink{mysort_8c_aad73ccafdb96b6eda42fd71c56cb2d33}{pgm\+\_\+name}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This Program reads input from stdin or a file, sorts them via qsort in ascending or descendig order and prints the result on stdout. 
+
+\begin{DoxyAuthor}{Author}
+Aaron Duxler 1427540 \href{mailto:e1427540@student.tuwien.ac.at}{\tt e1427540@student.\+tuwien.\+ac.\+at} 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+15.\+03.\+2017 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{mysort_8c_a3111957ab5baf740629c6c7ed408d7ad}\label{mysort_8c_a3111957ab5baf740629c6c7ed408d7ad}} 
+\index{mysort.\+c@{mysort.\+c}!getarguments@{getarguments}}
+\index{getarguments@{getarguments}!mysort.\+c@{mysort.\+c}}
+\subsubsection{\texorpdfstring{getarguments()}{getarguments()}}
+{\footnotesize\ttfamily static bool getarguments (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+reads in the arguments 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & argument count  argv argument vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool reverse. Wheather to reverse the sorting order or not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mysort_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{mysort_8c_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{mysort.\+c@{mysort.\+c}!main@{main}}
+\index{main@{main}!mysort.\+c@{mysort.\+c}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+saves program name, allocates a buffer, calls the functions getarguments, read\+From\+File\+And\+Save, sort\+And\+Print, free\+\_\+all and handles the return values 
+
+Program entry point 
+\begin{DoxyParams}{Parameters}
+{\em argc} & The argument counter \\
+\hline
+{\em argv} & The argument vector\\
+\hline
+\end{DoxyParams}
+global variables\+: pgm\+\_\+name \begin{DoxyReturn}{Returns}
+Returns E\+X\+I\+T\+\_\+\+S\+U\+C\+C\+E\+SS 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mysort_8c_ad96d407a911fbb914fa8e4cfbf2faf0f}\label{mysort_8c_ad96d407a911fbb914fa8e4cfbf2faf0f}} 
+\index{mysort.\+c@{mysort.\+c}!usage@{usage}}
+\index{usage@{usage}!mysort.\+c@{mysort.\+c}}
+\subsubsection{\texorpdfstring{usage()}{usage()}}
+{\footnotesize\ttfamily static void usage (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+This function writes helpful usage information about the program to stderr. 
+
+global variables\+: pgm\+\_\+name. 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{mysort_8c_aad73ccafdb96b6eda42fd71c56cb2d33}\label{mysort_8c_aad73ccafdb96b6eda42fd71c56cb2d33}} 
+\index{mysort.\+c@{mysort.\+c}!pgm\+\_\+name@{pgm\+\_\+name}}
+\index{pgm\+\_\+name@{pgm\+\_\+name}!mysort.\+c@{mysort.\+c}}
+\subsubsection{\texorpdfstring{pgm\+\_\+name}{pgm\_name}}
+{\footnotesize\ttfamily char$\ast$ pgm\+\_\+name\hspace{0.3cm}{\ttfamily [static]}}
+
+The program name. 

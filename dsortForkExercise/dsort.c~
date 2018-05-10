@@ -1,0 +1,74 @@
+/* second pipe example from Haviland */
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/wait.h>
+
+#define MSGSIZE 1024
+
+/*
+char *msg1 = "hello #1";
+char *msg2 = "hello #2";
+char *msg3 = "hello #3";
+*/
+
+int main(int argc, char *argv[])
+{
+
+   if(argc!=3){
+	    fprintf(stderr,"%s", "WRONG ARGUMENT COUNT\n");
+	    exit(1);
+   }
+
+   char *command1, *command2;
+   command1 = argv[1];
+   command2 = argv[2];
+
+   char inbuf[MSGSIZE];
+
+   int p[2], pid;
+
+   /* open pipe */
+
+   if(pipe(p) == -1)
+   {    perror("pipe call error");
+        exit(1);
+   }
+
+   switch(pid = fork()){
+     case -1:
+     perror("error: fork call");
+     exit(2);
+
+     case 0:  /* if child then write down pipe */
+       close(p[0]);  /* first close the read end of the pipe */
+       if(dup2(p[1], 1) == -1 ){ /* stdout == write end of the pipe */
+	        perror( "dup2 failed" );
+          _exit(1);
+	     }
+	     close(p[1]);
+       char* argz[] ={"/bin/bash", "-c","echo YEEEEEESSSSSS!!!!!", NULL};
+       execv(argz[0], argz);
+	     /*printf("Child says:%s1\n", command1);
+	     printf("Child says:%s2\n", command1);
+	     printf("Child says:%s3\n", command1);
+       */
+       break;
+     default:   /* parent reads pipe */
+         close(p[1]);  /* first close the write end of the pipe */
+         if(dup2(p[0], 0 ) == -1 ){ /* stdin == read end of the pipe */
+	          perror( "dup2 failed" );
+	          _exit(1);
+	       }
+	       //close(p[0]);  /*close the fd of read end of the pipe */
+
+	       while( fgets(inbuf, 1024, stdin)!=NULL /*read(p[0], inbuf, 1024)!=NULL*/){
+      	    printf("Parent: %s\n", inbuf);
+	       }
+         wait(NULL);
+    }
+
+   return 0;
+}
