@@ -1,2 +1,2 @@
 # OpSys
-For you me dear friend
+For you my dear friend
